@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Hentikan semua container yang sedang berjalan
+sudo docker stop $(sudo docker ps -aq)
+
+# Hapus semua container
+sudo docker rm $(sudo docker ps -aq)
+
+# Hapus semua image
+sudo docker rmi $(sudo docker images -q)
+
+# Hapus Docker dan komponennya
+sudo apt purge -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
+
+# Hapus konfigurasi Docker
+sudo rm -rf /var/lib/docker
+sudo rm -rf /etc/docker
+
+# Hapus grup Docker (jika ada)
+sudo groupdel docker
+
+# Hapus dependensi yang tidak terpakai
+sudo apt autoremove -y
+
+# Verifikasi penghapusan
+echo "Docker telah dihapus sepenuhnya."
