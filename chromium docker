@@ -1,0 +1,4 @@
+ocker pull chromium
+
+# Jalankan container Chromium
+docker run -it --rm --name chromium-container chromium
